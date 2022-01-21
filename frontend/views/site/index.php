@@ -1,3 +1,8 @@
+<?php
+
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
+?>
 <!-- new collection section start -->
 <div class="layout_padding collection_section">
     <div class="container">
@@ -215,38 +220,29 @@
             <div class="col-md-6">
                 <div class="email_box">
                     <div class="input_main">
-                     <div class="container">
-                      <form action="/action_page.php">
-                        <div class="form-group">
-                          <input type="text" class="email-bt" placeholder="Name" name="Name">
-                      </div>
-                      <div class="form-group">
-                          <input type="text" class="email-bt" placeholder="Phone Numbar" name="Name">
-                      </div>
-                      <div class="form-group">
-                          <input type="text" class="email-bt" placeholder="Email" name="Email">
-                      </div>
-
-                      <div class="form-group">
-                        <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
+                        <?php $form = Activeform::begin()?>
+                        <div class="container">
+                            <?=$form->field($model, 'name')->label(false)->textInput(['class'=>'email-btn form-control', 'placeholder'=>'Name']) ?>
+                            <?=$form->field($model, 'email')->label(false)->textInput(['class'=>'email-btn form-control', 'placeholder'=>'Email']) ?>
+                            <?=$form->field($model, 'phone')->label(false)->textInput(['class'=>'email-btn form-control', 'placeholder'=>'Phone']) ?>
+                            <?=$form->field($model, 'subject')->label(false)->textarea(['class'=>'email-btn form-control', 'placeholder'=>'Subject']) ?>
+                        </div> 
+                        <div class="send_btn">
+                            <?= Html::submitButton('Send',['class'=>'btn btn-lg btn-outline-danger'])?>
+                        </div>                   
+                        <?php ActiveForm::end();?>
                     </div>
-                </form>   
-            </div> 
-            <div class="send_btn">
-                <button class="main_bt">Send</button>
-            </div>                   
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="shop_banner">
+                    <div class="our_shop">
+                        <button class="out_shop_bt">Our Shop</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<div class="col-md-6">
-    <div class="shop_banner">
-        <div class="our_shop">
-            <button class="out_shop_bt">Our Shop</button>
-        </div>
-    </div>
-</div>
-</div>
-</div>
 </div>
 <!-- contact section end -->
 

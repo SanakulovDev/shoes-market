@@ -14,6 +14,7 @@ class ContactForm extends Model
     public $email;
     public $subject;
     public $body;
+    public $phone;
     public $verifyCode;
 
 
@@ -24,9 +25,10 @@ class ContactForm extends Model
     {
         return [
             // name, email, subject and body are required
-            [['name', 'email', 'subject', 'body'], 'required'],
+            // [['name', 'email', 'subject', 'body','phone'], 'required'],
             // email has to be a valid email address
             ['email', 'email'],
+            [['phone','name','email','subject','body'],'string', 'max'=>255],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
         ];
@@ -55,7 +57,7 @@ class ContactForm extends Model
             ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
             ->setReplyTo([$this->email => $this->name])
             ->setSubject($this->subject)
-            ->setTextBody($this->body)
+            ->setTextBody($this->body.$this->phone)
             ->send();
     }
 }
